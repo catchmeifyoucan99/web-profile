@@ -2,7 +2,7 @@ const NavbarHeader = () => {
 
 
   return (
-    <div className="flex w-full h-[7%] px-[30px] items-center">
+    <div className="flex w-full h-[7%] px-[30px] pt-3 items-center">
       <h3 className="font-gilroy text-[22px] font-normal">
         <b className="rain text-black font-semibold">RAIN</b>
         PAU
