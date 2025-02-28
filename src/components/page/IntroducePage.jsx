@@ -12,7 +12,7 @@ const IntroducePage = () => {
       setOffsetX(window.scrollY * 2);
 
       // Calculate size (background)
-      const newSize = Math.max(0, 100 - window.scrollY * 1.9);
+      const newSize = Math.max(0, 100 - window.scrollY * 0.9);
       setBackgroundSize(newSize);
 
       const newBackgroundRadius = Math.min(window.scrollY * 9.9, 200);
@@ -37,7 +37,6 @@ const IntroducePage = () => {
 
   return (
     <div className="h-[300vh] text-black relative">
-      {/* Background */}
       <div
         className="fixed"
         style={{
@@ -54,7 +53,7 @@ const IntroducePage = () => {
 
       <div
         className="fixed top-1.5 left-1/2 bottom-2 w-full flex justify-center items-center whitespace-nowrap transition-transform duration-100 ease-out"
-        style={{ transform: `translateX(${-offsetX}px)` }}
+        style={{ transform: `translateX(${-offsetX - 27}px)` }}
       >
         {/* Avatar */}
         <div className="mr-4 flex-shrink-0">
