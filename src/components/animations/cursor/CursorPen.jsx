@@ -1,8 +1,8 @@
 import React, { useEffect, useRef } from "react";
-import {motion} from 'framer-motion';
+import { motion } from 'framer-motion';
 
 const CursorPen = () => {
-  const colors = Array(22).fill("#000000");
+  const colors = ["#000000", "#FFFFFF"];
   const circlesRef = useRef([]);
 
   useEffect(() => {
@@ -20,9 +20,31 @@ const CursorPen = () => {
       coords.y = e.clientY;
     };
 
+    const getBackgroundColor = (x, y) => {
+      const element = document.elementFromPoint(x, y);
+      if (!element) return "#FFFFFF";
+
+      let currentElement = element;
+      while (currentElement) {
+        const style = window.getComputedStyle(currentElement);
+        const bgColor = style.backgroundColor;
+
+        if (bgColor === "rgb(0, 0, 0)" || bgColor === "#000000") {
+          return "#000000";
+        }
+
+        currentElement = currentElement.parentElement;
+      }
+
+      return "#FFFFFF";
+    };
+
     const animateCircles = () => {
       let x = coords.x;
       let y = coords.y;
+
+      const bgColor = getBackgroundColor(x, y);
+      const isDarkBackground = bgColor === "#000000";
 
       circles.forEach((circle, index) => {
         const scaleValue = 1 - (index / circles.length);
@@ -31,6 +53,8 @@ const CursorPen = () => {
 
         circle.x = x;
         circle.y = y;
+
+        circle.style.backgroundColor = isDarkBackground ? "#FFFFFF" : "#000000";
 
         const nextCircle = circles[index + 1] || circles[0];
         if (nextCircle) {
@@ -48,7 +72,7 @@ const CursorPen = () => {
     return () => {
       window.removeEventListener("mousemove", handleMouseMove);
     };
-  }, [colors]);
+  }, []);
 
   return (
     <div>

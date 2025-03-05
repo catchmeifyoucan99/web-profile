@@ -38,9 +38,8 @@ const IntroducePage = () => {
   return (
     <div className="h-[300vh] text-black relative">
       <div
-        className="fixed"
+        className="fixed bg-black"
         style={{
-          backgroundColor: 'black',
           width: `${backgroundSize}vw`,
           height: `${backgroundSize}vw`,
           borderRadius: `${backgroundRadius}%`,
@@ -48,12 +47,13 @@ const IntroducePage = () => {
           left: '50%',
           transform: `translate(-50%, -50%) ${moveBackground ? `translateX(${-offsetX}px)` : ''}`,
           transition: 'all 0.2s ease-out',
+          zIndex: 1,
         }}
       ></div>
 
       <div
         className="fixed top-1.5 left-1/2 bottom-2 w-full flex justify-center items-center whitespace-nowrap transition-transform duration-100 ease-out"
-        style={{ transform: `translateX(${-offsetX - 27}px)` }}
+        style={{ transform: `translateX(${-offsetX - 27}px)`, zIndex: 2 }}
       >
         {/* Avatar */}
         <div className="mr-4 flex-shrink-0">

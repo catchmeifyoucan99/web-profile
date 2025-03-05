@@ -29,4 +29,11 @@ body {
   /*font-family: 'Inter', sans-serif;*/
 }
 
+* {
+  pointer-events: auto;
+}
+
+.circle {
+  pointer-events: none;
+}
 
