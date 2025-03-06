@@ -6,16 +6,19 @@ const IntroducePage = () => {
   const [backgroundSize, setBackgroundSize] = useState(100);
   const [backgroundRadius, setBackgroundRadius] = useState(0);
   const [moveBackground, setMoveBackground] = useState(false);
+  const [mouseOffset, setMouseOffset] = useState(0);
 
   useEffect(() => {
     const handleScroll = () => {
-      setOffsetX(window.scrollY * 2);
+      const scrollY = window.scrollY;
+
+      setOffsetX(scrollY * 2);
 
       // Calculate size (background)
-      const newSize = Math.max(0, 100 - window.scrollY * 0.9);
+      const newSize = Math.max(0, 100 - scrollY * 0.9);
       setBackgroundSize(newSize);
 
-      const newBackgroundRadius = Math.min(window.scrollY * 9.9, 200);
+      const newBackgroundRadius = Math.min(scrollY * 9.9, 200);
 
       // Calculate radius (background)
       if (newSize <= 50) {
@@ -26,8 +29,12 @@ const IntroducePage = () => {
         setMoveBackground(false);
       }
 
-      // Calculate (avatar)
-      const newAvatarSize = Math.max(96, 384 - window.scrollY);
+      // Điều chỉnh opacity và dịch chuột
+      const newMouseOffset = Math.min(scrollY / 2, 100);
+      setMouseOffset(newMouseOffset);
+
+      // Calculate avatar size
+      const newAvatarSize = Math.max(96, 384 - scrollY);
       setAvatarSize(newAvatarSize);
     };
 
@@ -68,7 +75,28 @@ const IntroducePage = () => {
           />
         </div>
 
-        {/* Giới thiệu */}
+        <div
+          className="absolute z-20 mr-20 transition-transform duration-700 ease-out flex flex-col items-center"
+          style={{
+            opacity: Math.max(0, 1 - window.scrollY / 15),
+            transform: `translateY(${scrollY}px)`,
+            transition: "transform 0.1s ease-out, opacity 0.1s ease-out",
+          }}
+        >
+          <img
+            src="/src/assets/images/mouse.png"
+            alt="Mouse"
+            className="w-9 h-9"
+            style={{ filter: "invert(1)" }}
+          />
+          <img
+            src="/src/assets/images/down-arrow.png"
+            alt="mouse-animate"
+            className="w-6 h-6 mt-1 animate-arrow"
+            style={{ filter: "invert(1)" }}
+          />
+        </div>
+
         <h1 className="text-5xl font-medium">
           Hi, My name is{" "}
           <span className="relative font-[700] after:content-[''] after:block after:w-full after:h-[3px] after:bg-black after:absolute after:bottom-0 after:left-0 after:transition-all after:duration-300 hover:after:w-0">
