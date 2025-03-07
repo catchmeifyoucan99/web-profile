@@ -14,11 +14,15 @@
   },
   "dependencies": {
     "@fontsource/inter": "^5.1.0",
+    "@radix-ui/react-hover-card": "^1.1.6",
     "framer-motion": "^11.18.2",
+    "motion": "^12.4.10",
+    "prop-types": "^15.8.1",
+    "qss": "^3.0.0",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
-    "react-fast-marquee": "^1.6.5",
-    "react-router-dom": "^7.0.1"
+    "react-router-dom": "^7.0.1",
+    "tailwind-merge": "^3.0.2"
   },
   "devDependencies": {
     "@babel/preset-env": "^7.26.0",
